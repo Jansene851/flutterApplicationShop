@@ -9,13 +9,19 @@ import 'package:flutter_app_shop/configs/styles.dart';
 @immutable
 class ItemCardWidget extends StatefulWidget {
   final String itemName;
+  final String itemDescription;
+  final String itemImagePreviewUrl;
   double itemPrice;
   int initialCount;
+  final List<Color> bgi;
   ItemCardWidget({
     Key? key,
     required this.itemName,
+    required this.itemDescription,
+    required this.itemImagePreviewUrl,
     required this.itemPrice,
     required this.initialCount,
+    required this.bgi,
   }) : super(key: key);
 
   @override
@@ -39,10 +45,13 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
             width: 100,
             height: 100,
             decoration: BoxDecoration(
-                gradient: LinearGradient(tileMode: TileMode.clamp, colors: [
-                  AppColors.primaryColor,
-                  AppColors.primaryColor2,
-                ]),
+                gradient: LinearGradient(tileMode: TileMode.clamp, colors: widget.bgi),
+                /*
+                  Les images present dans le dossiers images (assets/images/), ne sont pas de tres bonne 
+                  qualiter, des images avec des resolutions de 
+                */
+                image: DecorationImage(
+                    image: AssetImage(widget.itemImagePreviewUrl), fit: BoxFit.fill),
                 borderRadius: BorderRadius.circular(12)),
           ),
           Expanded(
@@ -58,11 +67,11 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Casual T-Shirt",
+                          widget.itemName,
                           style: AppRegisterTextStyle.normalTextStyle1(weight: FontWeight.w600),
                         ),
                         Text(
-                          "Women beauty",
+                          widget.itemDescription,
                           style: AppRegisterTextStyle.lowTextStyle(
                               weight: FontWeight.w600, color: AppColors.widgetInactiveColor),
                         ),

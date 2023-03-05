@@ -6,6 +6,7 @@ import 'package:flutter_app_shop/pages/home_page/fragments/card_fragment/card_fr
 import 'package:flutter_app_shop/pages/home_page/fragments/home_fragment/home_fragment.dart';
 import 'package:flutter_app_shop/pages/home_page/fragments/notification_fragment/notification_fragment.dart';
 import 'package:flutter_app_shop/pages/home_page/fragments/profile_fragment/profile_fragment.dart';
+import 'package:flutter_bounce/flutter_bounce.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -31,7 +32,7 @@ class _HomePageState extends State<HomePage> {
               weight: FontWeight.w600, color: AppColors.colorBlack.withOpacity(.75)),
         ),
         Text(
-          "Harry Tenslor IDA",
+          "Yves Jansene Kouame",
           style: AppRegisterTextStyle.normalTextStyle2(
               color: AppColors.colorBlack, weight: FontWeight.w600),
         )
@@ -64,15 +65,21 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Container(
-          width: 40.0,
-          height: 40.0,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(color: AppColors.colorWhite, shape: BoxShape.circle),
-          margin: const EdgeInsets.only(left: 10),
-          child: Icon(
-            CupertinoIcons.list_dash,
-            color: AppColors.primaryColor2,
+        leading: Bounce(
+          duration: const Duration(milliseconds: 180),
+          onPressed: () {
+            // Ouverture d'un potentiel menu
+          },
+          child: Container(
+            width: 40.0,
+            height: 40.0,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(color: AppColors.colorWhite, shape: BoxShape.circle),
+            margin: const EdgeInsets.only(left: 10),
+            child: Icon(
+              CupertinoIcons.list_dash,
+              color: AppColors.primaryColor2,
+            ),
           ),
         ),
         title: appbarTitleWidgets[currentIndex],
@@ -83,8 +90,11 @@ class _HomePageState extends State<HomePage> {
               width: 45.0,
               height: 45.0,
               alignment: Alignment.center,
-              decoration: BoxDecoration(shape: BoxShape.circle, color: AppColors.colorWhite),
-              child: const Icon(CupertinoIcons.profile_circled),
+              decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      image: AssetImage("assets/images/profile.jpg"), fit: BoxFit.cover)),
+              //child: const Icon(CupertinoIcons.profile_circled),
             ),
           )
         ],
@@ -120,8 +130,9 @@ class _HomePageState extends State<HomePage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          GestureDetector(
-            onTap: () {
+          Bounce(
+            duration: const Duration(milliseconds: 150),
+            onPressed: () {
               setState(() {
                 currentIndex = 0;
               });
@@ -141,8 +152,9 @@ class _HomePageState extends State<HomePage> {
                           : AppColors.colorBlack.withOpacity(.50))),
             ),
           ),
-          GestureDetector(
-            onTap: () {
+          Bounce(
+            duration: const Duration(milliseconds: 150),
+            onPressed: () {
               setState(() {
                 currentIndex = 1;
               });
@@ -163,8 +175,9 @@ class _HomePageState extends State<HomePage> {
                           : AppColors.colorBlack.withOpacity(.50))),
             ),
           ),
-          GestureDetector(
-            onTap: () {
+          Bounce(
+            duration: const Duration(milliseconds: 150),
+            onPressed: () {
               setState(() {
                 currentIndex = 2;
               });
@@ -185,8 +198,9 @@ class _HomePageState extends State<HomePage> {
                           : AppColors.colorBlack.withOpacity(.50))),
             ),
           ),
-          GestureDetector(
-            onTap: () {
+          Bounce(
+            duration: const Duration(milliseconds: 150),
+            onPressed: () {
               setState(() {
                 currentIndex = 3;
               });

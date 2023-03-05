@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_shop/configs/colors.dart';
 import 'package:flutter_app_shop/configs/styles.dart';
 import 'package:flutter_app_shop/pages/home_page/fragments/home_fragment/widgets/item_card.dart';
+import 'package:flutter_bounce/flutter_bounce.dart';
 
 class HomeFragment extends StatefulWidget {
   const HomeFragment({super.key});
@@ -37,6 +38,7 @@ class _HomeFragmentState extends State<HomeFragment> {
         child: Column(
           children: [
             _searchbar(),
+            const SizedBox(height: 10.0),
             _landingShop(),
             _userChipFecthItem(),
             //const Spacer(),
@@ -61,9 +63,9 @@ class _HomeFragmentState extends State<HomeFragment> {
                 decoration: BoxDecoration(boxShadow: [
                   BoxShadow(
                       offset: const Offset(1, 2),
-                      color: AppColors.widgetInactiveColor.withOpacity(.25),
-                      spreadRadius: .5,
-                      blurRadius: .5),
+                      color: AppColors.widgetInactiveColor.withOpacity(.35),
+                      spreadRadius: 1.5,
+                      blurRadius: 2)
                 ], borderRadius: BorderRadius.circular(20)),
                 child: Row(
                   children: [
@@ -87,8 +89,9 @@ class _HomeFragmentState extends State<HomeFragment> {
                   ],
                 )),
           ),
-          GestureDetector(
-            onTap: () {
+          Bounce(
+            duration: const Duration(milliseconds: 150),
+            onPressed: () {
               // Que faites-vous ?
             },
             child: Container(
@@ -104,9 +107,9 @@ class _HomeFragmentState extends State<HomeFragment> {
                   boxShadow: [
                     BoxShadow(
                         offset: const Offset(1, 2),
-                        color: AppColors.widgetInactiveColor.withOpacity(.25),
-                        spreadRadius: 1,
-                        blurRadius: 1)
+                        color: AppColors.widgetInactiveColor.withOpacity(.35),
+                        spreadRadius: 4,
+                        blurRadius: 4)
                   ],
                   borderRadius: BorderRadius.circular(20)),
               child: Icon(
@@ -121,16 +124,55 @@ class _HomeFragmentState extends State<HomeFragment> {
   }
 
   Widget _landingShop() {
-    return Container(
-      width: double.infinity,
-      height: 160,
-      decoration: BoxDecoration(
-          gradient: LinearGradient(tileMode: TileMode.clamp, colors: [
-            AppColors.primaryColor,
-            AppColors.primaryColor2,
-          ]),
-          borderRadius: BorderRadius.circular(20)),
-      margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+    return Stack(
+      alignment: Alignment.centerLeft,
+      children: [
+        Container(
+          width: double.infinity,
+          height: 150,
+          decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                    offset: const Offset(1, 2),
+                    color: AppColors.primaryColor.withOpacity(.35),
+                    spreadRadius: 4,
+                    blurRadius: 4)
+              ],
+              gradient: LinearGradient(tileMode: TileMode.clamp, colors: [
+                AppColors.primaryColor,
+                AppColors.primaryColor2,
+              ]),
+              borderRadius: BorderRadius.circular(20)),
+          margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+          padding: const EdgeInsets.only(left: 70),
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Big Sale",
+                  style: AppRegisterTextStyle.largeTextStyle1(color: AppColors.colorWhite),
+                ),
+                const SizedBox(height: 8.0),
+                Text(
+                  "Get the trandy fashion at a discount of up to 50%",
+                  style: AppRegisterTextStyle.normalTextStyle1(color: AppColors.colorWhite),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+            offset: const Offset(-15, -20),
+            child: Container(
+              width: 150,
+              height: 190,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/images/img5.png"), fit: BoxFit.cover)),
+            )),
+      ],
     );
   }
 
@@ -186,10 +228,26 @@ class _HomeFragmentState extends State<HomeFragment> {
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, mainAxisExtent: 330, crossAxisSpacing: 8),
       children: const [
-        ItemCardView(itemName: "Casual V-Neck", itemPrice: 629.00),
-        ItemCardView(itemName: "Casual T-Shirt", itemPrice: 70.00),
-        ItemCardView(itemName: "Casual Rockers", itemPrice: 410.00),
-        ItemCardView(itemName: "Casual H-Air", itemPrice: 129.00),
+        ItemCardView(
+          itemName: "Casual V-Neck",
+          itemPrice: 629.00,
+          itemPreviewPath: "assets/images/img1.jpg",
+        ),
+        ItemCardView(
+          itemName: "Casual T-Shirt",
+          itemPrice: 70.00,
+          itemPreviewPath: "assets/images/img2.png",
+        ),
+        ItemCardView(
+          itemName: "Casual Rockers",
+          itemPrice: 410.00,
+          itemPreviewPath: "assets/images/img4.png",
+        ),
+        ItemCardView(
+          itemName: "Casual H-Air",
+          itemPrice: 129.00,
+          itemPreviewPath: "assets/images/img3.png",
+        ),
       ],
     ),
     GridView(
@@ -198,8 +256,16 @@ class _HomeFragmentState extends State<HomeFragment> {
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, mainAxisExtent: 330, crossAxisSpacing: 8),
       children: const [
-        ItemCardView(itemName: "Casual V-Neck", itemPrice: 629.00),
-        ItemCardView(itemName: "Casual T-Shirt", itemPrice: 70.00),
+        ItemCardView(
+          itemName: "Casual V-Neck",
+          itemPrice: 629.00,
+          itemPreviewPath: "assets/images/img1.jpg",
+        ),
+        ItemCardView(
+          itemName: "Casual T-Shirt",
+          itemPrice: 70.00,
+          itemPreviewPath: "assets/images/img5.png",
+        ),
       ],
     ),
     GridView(
@@ -208,7 +274,21 @@ class _HomeFragmentState extends State<HomeFragment> {
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, mainAxisExtent: 330, crossAxisSpacing: 8),
       children: const [
-        ItemCardView(itemName: "Casual V-Neck", itemPrice: 629.00),
+        ItemCardView(
+          itemName: "Casual V-Neck",
+          itemPrice: 629.00,
+          itemPreviewPath: "assets/images/img6.png",
+        ),
+        ItemCardView(
+          itemName: "Oreaon Benz",
+          itemPrice: 629.00,
+          itemPreviewPath: "assets/images/img2.png",
+        ),
+        ItemCardView(
+          itemName: "Pink Blazer",
+          itemPrice: 629.00,
+          itemPreviewPath: "assets/images/img3.png",
+        ),
       ],
     ),
     GridView(
@@ -217,8 +297,26 @@ class _HomeFragmentState extends State<HomeFragment> {
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, mainAxisExtent: 330, crossAxisSpacing: 8),
       children: const [
-        ItemCardView(itemName: "Casual V-Neck", itemPrice: 629.00),
-        ItemCardView(itemName: "Casual T-Shirt", itemPrice: 70.00),
+        ItemCardView(
+          itemName: "Casual V-Neck",
+          itemPrice: 629.00,
+          itemPreviewPath: "assets/images/img3.png",
+        ),
+        ItemCardView(
+          itemName: "Casual T-Shirt",
+          itemPrice: 70.00,
+          itemPreviewPath: "assets/images/img7.png",
+        ),
+        ItemCardView(
+          itemName: "Casual T-Shirt",
+          itemPrice: 70.00,
+          itemPreviewPath: "assets/images/img6.png",
+        ),
+        ItemCardView(
+          itemName: "Casual T-Shirt",
+          itemPrice: 70.00,
+          itemPreviewPath: "assets/images/img5.png",
+        ),
       ],
     )
   ];
