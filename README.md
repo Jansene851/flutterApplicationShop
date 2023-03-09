@@ -1,16 +1,23 @@
-# flutter_app_shop
+# FLUTTER SHOPPING APP
+(c)copyright __________2023____
 
-A new Flutter project.
+# Introduction
+Ecrivez-une description de votre application
+lore ipsum.....
+lorem.....ipsume
 
-## Getting Started
+# Demonstration
+une petit text ?
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+### Image de previsualisations
+![Image de preview 1](screenshots/img1.jpg)
+![Image de preview 2](screenshots/img2.jpg)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# Vue d'enssemble de fonctionnaliters
+une petit text ?
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# A propos du projet
+Ecrivez-une description de votre application
+lore ipsum.....
+lorem.....ipsume
